@@ -6,5 +6,12 @@
 # An example controller showing a sample home page
 GET         /                           controllers.HomeController.index()
 
+GET         /api/todos                      todo.TodoController.list
+POST        /api/todos                      todo.TodoController.create
+GET         /api/todos/:id                  todo.TodoController.get(id: String)
+PUT         /api/todos/:id                  todo.TodoController.update(id: String)
+DELETE      /api/todos/:id                  todo.TodoController.delete(id: String)
+
+
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

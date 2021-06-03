@@ -43,3 +43,17 @@ Execute `sbt run` to run the app. Browse `http://localhost:9000`
 
 We will also add a `HomeIntegrationSpec` to demonstrate how to test the `/` route using a http client.
 
+## Change the `HEAD` to point to the second commit - `Todo app with in memory persistence`
+
+As part of this commit, we added a `TODO` API using in memory-persistence. This API will let us manage our `TODOs`
+
+We have additional routes in the routes file to do CRUD operations on the `TODO` domain -
+
+GET         /api/todos    
+POST        /api/todos    
+GET         /api/todos/:id
+PUT         /api/todos/:id
+DELETE      /api/todos/:id
+
+We also have a new [`TodoController`](app/todo/TodoController.scala) and a corresponding [`Todo`](app/todo/Todo.scala) model.
+There are [`TodoControllerSpecs`](test/todo/TodoControllerSpecs.scala) which test the CRUD behaviour.
