@@ -12,6 +12,8 @@ GET         /api/todos/:id                  todo.TodoController.get(id: String)
 PUT         /api/todos/:id                  todo.TodoController.update(id: String)
 DELETE      /api/todos/:id                  todo.TodoController.delete(id: String)
 
+GET         /todos                          todo.TodoFrontendController.list
+GET         /todos/:id                      todo.TodoFrontendController.get(id: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

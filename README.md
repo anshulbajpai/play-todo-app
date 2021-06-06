@@ -64,3 +64,17 @@ As part of this commit, we refactored the `TODO` API to use mongo persistence. F
 
 To use mongo persistence, we refactored the controller code to use `TodoRepository` abstraction which has two concrete implementations, i.e. `InMemoryTodoRepository` and `MongoTodoRepository`.
 We also created new tests and updated the existing controller tests to use mocks.
+
+## Change the `HEAD` to point to the fourth commit - `Todo frontend`
+
+As part of this commit, we have created a HTML view for TODOs using Play's twirl templates. We created additional two endpoints to show TODOs which in turn consume the API endpoints we created in previous commits.
+We have used Play's `WSClient` as http client. To use it, we need to add following line in our [build.sbt](build.sbt) file -
+
+```sbt
+libraryDependencies += ws
+```
+
+## Change the `HEAD` to point to the fifth commit - `Use hmrc bootstrap`
+
+As part of this commit, we made use of [HMRC bootstrap-play](https://github.com/hmrc/bootstrap-play) library which is an opinionated library and brings in features like session management, auditing, metrics reporting and an opinionated http client.
+We enabled lots of module in application.conf to enable the above-mentioned features. We added an api connector which encapsulates interaction with the Todo API.

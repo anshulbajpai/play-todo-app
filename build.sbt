@@ -14,7 +14,7 @@ libraryDependencies += "org.mockito" %% "mockito-scala" % "1.16.37" % Test
 
 resolvers += MavenRepository("HMRC-open-artefacts-maven2", "https://open.artefacts.tax.service.gov.uk/maven2")
 
-
+libraryDependencies += ws
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "com.github.anshulbajpai.controllers._"
 
