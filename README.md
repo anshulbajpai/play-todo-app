@@ -57,3 +57,10 @@ DELETE      /api/todos/:id
 
 We also have a new [`TodoController`](app/todo/TodoController.scala) and a corresponding [`Todo`](app/todo/Todo.scala) model.
 There are [`TodoControllerSpecs`](test/todo/TodoControllerSpecs.scala) which test the CRUD behaviour.
+
+## Change the `HEAD` to point to the third commit - `Todo with mongo persistence`
+
+As part of this commit, we refactored the `TODO` API to use mongo persistence. For this we are using [hmrc/simple-reactivemongo](https://github.com/hmrc/simple-reactivemongo) library to interact with mongodb.
+
+To use mongo persistence, we refactored the controller code to use `TodoRepository` abstraction which has two concrete implementations, i.e. `InMemoryTodoRepository` and `MongoTodoRepository`.
+We also created new tests and updated the existing controller tests to use mocks.
