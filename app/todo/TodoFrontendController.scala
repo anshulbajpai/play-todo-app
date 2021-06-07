@@ -1,43 +1,32 @@
 package todo
 
-import play.api.Configuration
-import play.api.libs.json.Json
-import play.api.libs.ws.WSClient
-import play.api.mvc.{BaseController, ControllerComponents}
+import play.api.mvc.MessagesControllerComponents
 import todo.html.{ListTodosView, TodoView}
+import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.ExecutionContext
 
 @Singleton
 class TodoFrontendController @Inject()(
-  val controllerComponents: ControllerComponents,
+  mcc: MessagesControllerComponents,
   listTodosView: ListTodosView,
   todoView: TodoView,
-  configuration: Configuration,
-  wsClient: WSClient
+  todoApiConnector: TodoApiConnector
 )(implicit ec: ExecutionContext)
-    extends BaseController {
+    extends FrontendController(mcc) {
 
-  private val todosApiBaseUrl = s"${configuration.get[String]("todos-api-baseurl")}/api"
-
-  private implicit val todoReads = Json.reads[Todo]
-
-  val list = Action.async {
-    val responseFuture = wsClient.url(s"$todosApiBaseUrl/todos").get()
-    responseFuture.map { response =>
-      val todos = response.json.as[List[Todo]]
+  val list = Action.async { implicit request =>
+    todoApiConnector.getAllTodos().map { todos =>
       Ok(listTodosView(todos))
     }
   }
 
-  def get(id: String) = Action.async {
-    val responseFuture = wsClient.url(s"$todosApiBaseUrl/todos/$id").get()
-    responseFuture.map { response =>
-      if (response.status == NOT_FOUND) NotFound
-      else {
-        val todo = response.json.as[Todo]
-        Ok(todoView(todo))
+  def get(id: String) = Action.async { implicit request =>
+    todoApiConnector.getTodo(id).map { todoOpt =>
+      todoOpt match {
+        case Some(todo) => Ok(todoView(todo))
+        case None       => NotFound
       }
     }
   }
