@@ -2,6 +2,8 @@
 # This file defines all application routes (Higher priority routes first)
 # https://www.playframework.com/documentation/latest/ScalaRouting
 # ~~~~
+->         /govuk-frontend                     govuk.Routes
+->         /hmrc-frontend                      hmrcfrontend.Routes
 
 # An example controller showing a sample home page
 GET         /                           controllers.HomeController.index()

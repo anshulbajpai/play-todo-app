@@ -68,7 +68,7 @@ We also created new tests and updated the existing controller tests to use mocks
 ## Change the `HEAD` to point to the fourth commit - `Todo frontend`
 
 As part of this commit, we have created a HTML view for TODOs using Play's twirl templates. We created additional two endpoints to show TODOs which in turn consume the API endpoints we created in previous commits.
-We have used Play's `WSClient` as http client. To use it, we need to add following line in our [build.sbt](build.sbt) file -
+We have used Play's `WSClient` as http client.
 
 ```sbt
 libraryDependencies += ws
@@ -78,3 +78,8 @@ libraryDependencies += ws
 
 As part of this commit, we made use of [HMRC bootstrap-play](https://github.com/hmrc/bootstrap-play) library which is an opinionated library and brings in features like session management, auditing, metrics reporting and an opinionated http client.
 We enabled lots of module in application.conf to enable the above-mentioned features. We added an api connector which encapsulates interaction with the Todo API.
+
+## Change the `HEAD` to point to the sixth commit - `Use hmrc frontend`
+
+As part of this commit, we added a dependency on  [play-frontend-hmrc](https://github.com/hmrc/play-frontend-hmrc) which adds the capability of creating HTMLs based on gov.uk guidelines (GDS)
+We created our [Layout](app/views/Layout.scala.html) based on GDS and then wrapped other pages with this layout. We also made use of i18n feature supported by Play. 

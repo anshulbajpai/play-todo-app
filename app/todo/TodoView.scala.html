@@ -1,7 +1,10 @@
 @import todo.Todo
 
-@this()
+@this(layout: Layout)
 
-@(todo: Todo)
-<h1>TODO</h1>
-<b>@todo.title</b> - @todo.description
+@(todo: Todo)(implicit request: RequestHeader, messages: Messages)
+
+@layout(todo.title){
+    <h1>@todo.title</h1>
+    <p>@todo.description</p>
+}

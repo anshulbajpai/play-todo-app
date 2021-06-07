@@ -1,5 +1,7 @@
-@()
+@this(layout: Layout)
 
-@main("Welcome to Play") {
+@()(implicit request: RequestHeader, messages: Messages)
+
+@layout("Welcome to Play") {
   <h1>Welcome to Play!</h1>
 }

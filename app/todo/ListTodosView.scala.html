@@ -1,12 +1,15 @@
 @import todo.Todo
 @import todo.routes._
 
-@this()
+@this(layout: Layout)
 
-@(todos: List[Todo])
-<h1>TODOs</h1>
+@(todos: List[Todo])(implicit request: RequestHeader, messages: Messages)
+
+@layout(messages("listTodo.title")){
+<h1>@messages("listTodo.title")</h1>
 <ul>
     @for(todo <- todos) {
     <li><a href="@TodoFrontendController.get(todo.id)">@todo.title</a></li>
     }
 </ul>
+}
